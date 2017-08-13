@@ -859,6 +859,12 @@ class dataformfield_ratingmdl_ratingmdl extends mod_dataform\pluginbase\dataform
                 if ($scale = $DB->get_record('scale', array('id' => -$rating->settings->scale->id))) {
                     $scalearray = array_merge(array(0 => ''), explode(',', $scale->scale));
 
+                    $aggr->num = new stdClass();
+                    $aggr->num->avg = $aggr->avg;
+                    $aggr->num->max = $aggr->max;
+                    $aggr->num->min = $aggr->min;
+                    $aggr->num->sum = $aggr->sum;
+
                     $aggr->avg = $scalearray[round($aggr->avg)];
                     $aggr->max = $scalearray[round($aggr->max)];
                     $aggr->min = $scalearray[round($aggr->min)];

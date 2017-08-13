@@ -95,6 +95,18 @@ class dataformfield_ratingmdl_renderer extends mod_dataform\pluginbase\dataformf
                 } else if ($pattern == "[[$fieldname:sum]]") {
                     $str = $displayaggr->sum ? $displayaggr->sum : '';
 
+                } else if ($pattern == "[[$fieldname:num:avg]]") {
+                    $str = $displayaggr->num->avg ? $displayaggr->num->avg : '';
+
+                } else if ($pattern == "[[$fieldname:num:max]]") {
+                    $str = $displayaggr->num->max ? $displayaggr->num->max : '';
+
+                } else if ($pattern == "[[$fieldname:num:min]]") {
+                    $str = $displayaggr->num->min ? $displayaggr->num->min : '';
+
+                } else if ($pattern == "[[$fieldname:num:sum]]") {
+                    $str = $displayaggr->num->sum ? $displayaggr->num->sum : '';
+
                 } else if ($pattern == "[[$fieldname:view:count]]") {
                     $str = $displayaggr->count;
                     $str = html_writer::tag('span', $str, array('id' => "ratingcount_{$fieldid}_$entryid"));
@@ -411,6 +423,11 @@ class dataformfield_ratingmdl_renderer extends mod_dataform\pluginbase\dataformf
         $patterns["[[$fieldname:max]]"] = array(true, $fieldname);
         $patterns["[[$fieldname:min]]"] = array(true, $fieldname);
         $patterns["[[$fieldname:sum]]"] = array(true, $fieldname);
+        // These patterns return the raw numerical values.
+        $patterns["[[$fieldname:num:avg]]"] = array(true, $fieldname);
+        $patterns["[[$fieldname:num:max]]"] = array(true, $fieldname);
+        $patterns["[[$fieldname:num:min]]"] = array(true, $fieldname);
+        $patterns["[[$fieldname:num:sum]]"] = array(true, $fieldname);
 
         return $patterns;
     }
